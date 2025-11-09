@@ -156,9 +156,7 @@
         });
       }
 
-      // أحداث الصفحة
       document.addEventListener("click", (e) => {
-        // تحكم الكمية
         if (e.target.classList.contains("qty-btn")) {
           const id = Number(e.target.dataset.id);
           const action = e.target.dataset.action;
@@ -170,7 +168,6 @@
           renderCart();
         }
 
-        // حذف من السلة
         if (e.target.classList.contains("remove-btn")) {
           const id = Number(e.target.dataset.id);
           user.cart = user.cart.filter((i) => i.id !== id);
@@ -178,7 +175,6 @@
           renderCart();
         }
 
-        // إضافة من المفضلة إلى السلة
         if (e.target.classList.contains("add-from-fav")) {
           const id = Number(e.target.dataset.id);
           const inCart = user.cart.find((i) => i.id === id);
@@ -188,7 +184,6 @@
           renderCart();
         }
 
-        // ✅ قلب: حذف/إضافة من المفضلة داخل cart.html
         if (e.target.classList.contains("toggle-fav")) {
           const id = Number(e.target.dataset.id);
           const idx = user.favorites.indexOf(id);
@@ -198,14 +193,12 @@
           renderFavorites();
         }
 
-        // خروج
         if (e.target.id === "logoutBtn") {
           localStorage.removeItem("user");
           window.location.href = "login.html";
         }
       });
 
-      // أول تحميل
       renderCart();
       renderFavorites();
     </script>

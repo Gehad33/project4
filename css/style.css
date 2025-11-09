@@ -1,9 +1,9 @@
 :root {
-  --primary: #1e40af; /* أزرق داكن */
-  --accent: #3b82f6; /* أزرق فاتح */
-  --muted: #475569; /* رمادي أزرق هادئ */
-  --card-bg: #ffffff; /* خلفية الكروت */
-  --page-bg: #f1f5f9; /* خلفية الصفحة */
+  --primary: #1e40af;
+  --accent: #3b82f6;
+  --muted: #475569;
+  --card-bg: #ffffff;
+  --page-bg: #f1f5f9;
 }
 
 /* Reset */
@@ -44,7 +44,7 @@ section.container .form-select,
 section.container .form-control,
 section.container .btn {
   border-radius: 8px;
-  border: 1px solid #cbd5e1; /* رمادي فاتح */
+  border: 1px solid #cbd5e1;
 }
 
 /* Book card */
@@ -76,7 +76,6 @@ section.container .btn {
   align-items: center;
 }
 
-/* عنوان الكتاب */
 .book-card .title {
   font-size: 1.05rem;
   font-weight: 700;
@@ -85,7 +84,6 @@ section.container .btn {
   text-align: center;
 }
 
-/* معلومات الكتاب */
 .info {
   font-size: 0.95rem;
   color: var(--muted);
@@ -102,7 +100,6 @@ section.container .btn {
   margin-right: 6px;
 }
 
-/* القلب + الزر */
 .action-row {
   display: flex;
   align-items: center;
@@ -111,23 +108,22 @@ section.container .btn {
   margin-top: 10px;
 }
 
-/* القلب */
 .heart-icon {
   cursor: pointer;
   user-select: none;
   font-size: 1.6rem;
-  color: #9ca3af; /* رمادي فاتح للقلب */
+  color: #9ca3af;
   transition: color 0.3s, transform 0.2s;
   order: 1;
 }
 .heart-icon:hover {
   transform: scale(1.1);
-  color: #ef4444; /* أحمر عند المرور */
+  color: #ef4444;
 }
 .heart-icon.text-danger {
   color: #ef4444 !important;
 }
-/* زر إضافة للسلة */
+
 .add-to-cart.btn-primary {
   background: var(--primary);
   color: #fff;
@@ -138,15 +134,14 @@ section.container .btn {
 }
 
 .add-to-cart.btn-danger {
-  background: #ef4444; /* أحمر */
+  background: #ef4444;
   color: #fff;
 }
 
 .add-to-cart.btn-danger:hover {
-  background: #dc2626; /* أحمر غامق عند hover */
+  background: #dc2626;
 }
 
-/* الزر */
 .add-to-cart {
   background: var(--primary);
   border: none;
@@ -161,32 +156,27 @@ section.container .btn {
   background: var(--accent);
 }
 
-/* Hover effect */
 .book-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14);
 }
 
-/* Responsive smaller images */
 @media (max-width: 768px) {
   .book-card img {
     height: 300px;
   }
 }
 
-/* Highlight matched text */
 .highlight {
   background: linear-gradient(90deg, #fff59d33, #ffd54f33);
   padding: 2px 4px;
   border-radius: 4px;
 }
 
-/* Footer */
 .footer {
   color: var(--muted);
 }
 
-/* Cart styles */
 .cart-item {
   background: #f8fafc;
   border-radius: 8px;
@@ -211,5 +201,5 @@ section.container .btn {
   color: #333;
 }
 .close-btn:hover {
-  color: #ef4444; /* أحمر عند المرور */
+  color: #ef4444;
 }

@@ -9,11 +9,13 @@
       rel="stylesheet"
     />
   </head>
+
   <body
     class="bg-light d-flex justify-content-center align-items-center vh-100"
   >
     <div class="card shadow p-4" style="width: 500px">
       <h4 class="text-center mb-4">Create Account</h4>
+
       <form id="registerForm">
         <div class="row">
           <div class="col-md-6 mb-3">
@@ -26,6 +28,7 @@
               required
             />
           </div>
+
           <div class="col-md-6 mb-3">
             <label for="lastName" class="form-label">Last Name</label>
             <input
@@ -37,6 +40,7 @@
             />
           </div>
         </div>
+
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input
@@ -45,8 +49,10 @@
             class="form-control"
             placeholder="Enter email"
             required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           />
         </div>
+
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input
@@ -56,8 +62,18 @@
             placeholder="Enter password"
             required
           />
+
+          <ul id="passwordRules" class="small mt-2 text-muted">
+            <li id="rule-length">• At least 8 characters</li>
+            <li id="rule-upper">• At least 1 uppercase letter</li>
+            <li id="rule-lower">• At least 1 lowercase letter</li>
+            <li id="rule-number">• At least 1 number</li>
+            <li id="rule-symbol">• At least 1 symbol (!@#$%^&*)</li>
+          </ul>
         </div>
+
         <button type="submit" class="btn btn-primary w-100">Register</button>
+
         <div class="text-center mt-3">
           <small>Have an account? <a href="login.html">Login</a></small>
         </div>
@@ -69,8 +85,12 @@
         const alertDiv = document.createElement("div");
         alertDiv.className =
           "alert alert-success position-fixed top-0 start-50 translate-middle-x w-50 text-center";
-        alertDiv.style.zIndex = 1060;
-        alertDiv.innerHTML = `${message} <button class="btn btn-sm btn-light ms-2" id="okBtn">OK</button>`;
+        alertDiv.style.zIndex = "2000";
+        alertDiv.innerHTML = `
+          <strong>${message}</strong>
+          <button class="btn btn-sm btn-light ms-2" id="okBtn">OK</button>
+        `;
+
         document.body.appendChild(alertDiv);
 
         document.getElementById("okBtn").addEventListener("click", () => {
@@ -79,24 +99,67 @@
         });
       }
 
+      const passwordInput = document.getElementById("password");
+
+      passwordInput.addEventListener("input", () => {
+        const pass = passwordInput.value;
+
+        document.getElementById("rule-length").style.color =
+          pass.length >= 8 ? "green" : "red";
+
+        document.getElementById("rule-upper").style.color = /[A-Z]/.test(pass)
+          ? "green"
+          : "red";
+
+        document.getElementById("rule-lower").style.color = /[a-z]/.test(pass)
+          ? "green"
+          : "red";
+
+        document.getElementById("rule-number").style.color = /[0-9]/.test(pass)
+          ? "green"
+          : "red";
+
+        document.getElementById("rule-symbol").style.color = /[!@#$%^&*]/.test(
+          pass
+        )
+          ? "green"
+          : "red";
+      });
+
       document
         .getElementById("registerForm")
         .addEventListener("submit", (e) => {
           e.preventDefault();
+
           const firstName = document.getElementById("firstName").value.trim();
           const lastName = document.getElementById("lastName").value.trim();
           const email = document.getElementById("email").value.trim();
           const password = document.getElementById("password").value.trim();
 
           if (!firstName || !lastName || !email || !password) {
-            alert("Please fill all fields!");
+            alert("❌ Please fill all fields!");
             return;
           }
 
-          const user = { firstName, lastName, email, password, cart: [] };
+          const existingUser = JSON.parse(
+            localStorage.getItem("registeredUser")
+          );
+
+          if (existingUser && existingUser.email === email) {
+            alert("⚠️ This email is already registered!");
+            return;
+          }
+
+          const user = {
+            firstName,
+            lastName,
+            email,
+            password,
+            cart: [],
+          };
+
           localStorage.setItem("registeredUser", JSON.stringify(user));
 
-          // عرض alert أولًا ثم التوجيه للـ login
           showAlert("✅ Your account has been created successfully!", () => {
             window.location.href = "login.html";
           });

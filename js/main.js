@@ -198,14 +198,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (viewBtn) viewBtn.onclick = () => (window.location.href = "cart.html");
   }
 
-  // غلق السلة عند الضغط على X
   if (closeCartBtn) {
     closeCartBtn.addEventListener("click", () => {
       cartSidebar.style.display = "none";
     });
   }
 
-  // غلق عند الضغط خارج السلة
   document.addEventListener("click", (e) => {
     if (
       cartSidebar.style.display === "block" &&
@@ -218,7 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", (e) => {
-    // Add/remove cart
     if (e.target.classList.contains("add-to-cart")) {
       if (!user) return (window.location.href = "login.html");
       const id = Number(e.target.dataset.id);
@@ -231,13 +228,11 @@ document.addEventListener("DOMContentLoaded", () => {
       showCartSidebar();
     }
 
-    // open cart
     if (e.target.id === "cartIcon" || e.target.closest?.("#cartIcon")) {
       e.preventDefault();
       showCartSidebar();
     }
 
-    // qty buttons
     if (e.target.classList.contains("qty-btn")) {
       const id = Number(e.target.dataset.id);
       const action = e.target.dataset.action;
@@ -253,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // remove from cart
     if (e.target.classList.contains("remove-item")) {
       const id = Number(e.target.dataset.id);
       user.cart = user.cart.filter((item) => item.id !== id);
@@ -263,7 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderBooks(books);
     }
 
-    // Toggle Favorite
     if (e.target.classList.contains("heart-icon")) {
       if (!user) return (window.location.href = "login.html");
       const id = Number(e.target.dataset.id);
@@ -276,7 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // البحث
   const searchBtn = document.getElementById("searchBtn");
   if (searchBtn) searchBtn.addEventListener("click", performSearch);
   if (searchInput)
